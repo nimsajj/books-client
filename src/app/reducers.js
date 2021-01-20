@@ -1,9 +1,7 @@
 import { combineReducers } from "redux";
 
-const initialState = "First reducer";
+import booksReducer from "../features/books/redux/reducer";
 
-const demoReducer = (state = initialState, action) => {
-  return state;
-};
-
-export default combineReducers({ demo: demoReducer });
+export default combineReducers({
+  books: booksReducer,
+});

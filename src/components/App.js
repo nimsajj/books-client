@@ -4,17 +4,18 @@ import { Container, CssBaseline } from "@material-ui/core";
 
 import Navbar from "./Navbar";
 
-const Home = () => <div>Home page</div>;
+import { HomePage } from "../features/books";
+
 const Login = () => <div>Login page</div>;
 
 const App = () => (
   <Router>
     <CssBaseline />
     <Navbar />
-    <Container maxWidth="sm">
+    <Container maxWidth="md">
       <Switch>
         <Route exact path="/">
-          <Home />
+          <HomePage />
         </Route>
         <Route path="/login">
           <Login />
