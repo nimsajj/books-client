@@ -8,8 +8,8 @@ export const topMenuStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   link: {
-    color: theme.palette.common.white,
     textDecoration: "none",
+    color: theme.palette.common.white,
   },
   offset: theme.mixins.toolbar,
 }));
@@ -23,5 +23,16 @@ export const leftMenuStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: theme.spacing(0, 1),
+  },
+  progress: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: theme.spacing(2, 1),
+  },
+  error: {
+    display: "inline-flex",
+    verticalAlign: "middle",
+    padding: theme.spacing(1, 1),
   },
 }));
