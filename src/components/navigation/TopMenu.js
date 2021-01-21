@@ -19,30 +19,39 @@ const TopMenu = () => {
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
 
+  const renderMenuIcon = () => (
+    <IconButton
+      edge="start"
+      className={classes.menuButton}
+      color="inherit"
+      aria-label="menu"
+      onClick={handleDrawerOpen}
+    >
+      <MenuIcon />
+    </IconButton>
+  );
+
+  const renderMenuLinks = () => (
+    <>
+      <Typography variant="h6" className={classes.title}>
+        <Link to="/" className={classes.link}>
+          Books
+        </Link>
+      </Typography>
+      <Button color="inherit">
+        <Link to="/login" className={classes.link}>
+          Login
+        </Link>
+      </Button>
+    </>
+  );
+
   return (
     <>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={handleDrawerOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            <Link to="/" className={classes.link}>
-              Books
-            </Link>
-          </Typography>
-
-          <Button color="inherit">
-            <Link to="/login" className={classes.link}>
-              Login
-            </Link>
-          </Button>
+          {renderMenuIcon()}
+          {renderMenuLinks()}
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
