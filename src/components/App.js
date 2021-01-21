@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container, CssBaseline } from "@material-ui/core";
-
-import Navbar from "./Navbar";
-
+import { TopMenu } from "./navigation";
 import { HomePage } from "../features/books";
 
 const Login = () => <div>Login page</div>;
@@ -11,7 +9,7 @@ const Login = () => <div>Login page</div>;
 const App = () => (
   <Router>
     <CssBaseline />
-    <Navbar />
+    <TopMenu />
     <Container maxWidth="md">
       <Switch>
         <Route exact path="/">
