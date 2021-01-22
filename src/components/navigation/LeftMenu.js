@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bool, func } from "prop-types";
 import {
@@ -26,6 +26,7 @@ import {
   selectGenresStatus,
   selectGenresError,
 } from "../../features/genres/redux";
+import { fetchBooksByGenreRequest } from "../../features/books/redux/action";
 
 const useSelectDataToStore = () => {
   const genresStatus = useSelector(selectGenresStatus);
@@ -37,6 +38,7 @@ const useSelectDataToStore = () => {
 
 const LeftMenu = ({ isOpen, onClose }) => {
   const classes = useStyles();
+  const [selectedItem, setSelectedItem] = useState();
 
   const [genres, genresStatus, genresError] = useSelectDataToStore();
 
@@ -50,9 +52,9 @@ const LeftMenu = ({ isOpen, onClose }) => {
 
   const handleClickGenre = (genreId, e) => {
     e.preventDefault();
-    //console.log("onclick : ", genreId);
-    if (genresStatus === "succeded") {
-      //dispatch(fetchBooksByGenreRequest(genreId));
+    if (genresStatus === "succeeded") {
+      setSelectedItem(genreId);
+      dispatch(fetchBooksByGenreRequest(genreId));
     }
   };
 
@@ -88,7 +90,7 @@ const LeftMenu = ({ isOpen, onClose }) => {
   const renderGenres = () => (
     <List>
       {genres.map(({ id, name }) => (
-        <ListItem button key={name}>
+        <ListItem button key={name} selected={selectedItem === id}>
           <ListItemIcon>
             {id % 2 === 0 ? <LibraryBooksOutlinedIcon /> : <LibraryBooksIcon />}
           </ListItemIcon>

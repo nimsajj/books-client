@@ -15,6 +15,7 @@ export const bookApi = {
 // Genre endpoints
 export const genreApi = {
   getAll: () => httpClient.get("genres"),
+  getBooks: (id) => httpClient.get(`genres/${id}/books`),
   get: (id) => httpClient.get(`genres/${id}`),
   post: (data) => httpClient.post("genres", data),
   put: (data) => httpClient.put(`genres/${data.genreId}`, data),
