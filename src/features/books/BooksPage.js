@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   GridList,
   GridListTile,
@@ -9,8 +10,13 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Info as InfoIcon, Error as ErrorIcon } from "@material-ui/icons";
-import { fetchBooksRequest } from "./redux/action";
 import { booksStyles as useStyles } from "./styles";
+import {
+  fetchBooksRequest,
+  selectBooks,
+  selectBooksError,
+  selectBooksStatus,
+} from "./redux";
 
 const BooksList = ({ books }) => {
   const classes = useStyles();
@@ -23,12 +29,14 @@ const BooksList = ({ books }) => {
           title={book.title}
           subtitle={<span>by: unknow author</span>}
           actionIcon={
-            <IconButton
-              aria-label={`info about ${book.isbn}`}
-              className={classes.icon}
-            >
-              <InfoIcon />
-            </IconButton>
+            <Link to={`/books/${book.id}`}>
+              <IconButton
+                aria-label={`info about ${book.isbn}`}
+                className={classes.icon}
+              >
+                <InfoIcon />
+              </IconButton>
+            </Link>
           }
         />
       </GridListTile>
@@ -42,10 +50,11 @@ const BooksList = ({ books }) => {
     </div>
   );
 };
+
 const useSelectDataToStore = () => {
-  const books = useSelector((state) => state.books.data);
-  const booksStatus = useSelector((state) => state.books.status);
-  const booksError = useSelector((state) => state.books.error);
+  const books = useSelector(selectBooks);
+  const booksStatus = useSelector(selectBooksStatus);
+  const booksError = useSelector(selectBooksError);
 
   return [books, booksStatus, booksError];
 };

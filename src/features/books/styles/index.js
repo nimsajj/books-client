@@ -23,4 +23,17 @@ export const booksStyles = makeStyles((theme) => ({
     verticalAlign: "middle",
     padding: theme.spacing(1, 1),
   },
+  grid: { minHeight: "100vh" },
+  card_root: {
+    maxWidth: 550,
+  },
+  card_media: {
+    height: 140,
+  },
+  card_badge: {
+    margin: theme.spacing(3, 0, 0),
+  },
+  card_divider: {
+    margin: theme.spacing(2, 3),
+  },
 }));

@@ -4,6 +4,9 @@ import {
   FETCH_BOOKS_REQUEST,
   FETCH_BOOKS_SUCCESS,
   FETCH_BOOKS_ERROR,
+  FETCH_SINGLE_BOOK_REQUEST,
+  FETCH_SINGLE_BOOK_SUCCESS,
+  FETCH_SINGLE_BOOK_ERROR,
   FETCH_BOOKS_BY_GENRE_REQUEST,
   FETCH_BOOKS_BY_GENRE_SUCCESS,
   FETCH_BOOKS_BY_GENRE_ERROR,
@@ -41,9 +44,26 @@ function* fetchBooksByGenre(action) {
   }
 }
 
+function* fetchSingleBook(action) {
+  try {
+    const { data } = yield call(bookApi.get, action.payload);
+
+    yield put({
+      type: FETCH_SINGLE_BOOK_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    yield put({
+      type: FETCH_SINGLE_BOOK_ERROR,
+      payload: error,
+    });
+  }
+}
+
 function* booksSaga() {
   yield takeEvery(FETCH_BOOKS_REQUEST, fetchBooks);
   yield takeEvery(FETCH_BOOKS_BY_GENRE_REQUEST, fetchBooksByGenre);
+  yield takeEvery(FETCH_SINGLE_BOOK_REQUEST, fetchSingleBook);
 }
 
 export default booksSaga;
