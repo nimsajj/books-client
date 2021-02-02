@@ -2,9 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container, CssBaseline } from "@material-ui/core";
 import { TopMenu } from "./navigation";
-import { HomePage } from "../features/books";
-
-const Login = () => <div>Login page</div>;
+import { routes } from "../config";
 
 const App = () => (
   <Router>
@@ -12,12 +10,10 @@ const App = () => (
     <TopMenu />
     <Container maxWidth="md">
       <Switch>
-        <Route exact path="/">
-          <HomePage />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
+        {routes.map((route) => (
+          <Route exact key={route.path} {...route} />
+        ))}
+        <Route component={() => <div>Error 404: Route not found</div>} />
       </Switch>
     </Container>
   </Router>
