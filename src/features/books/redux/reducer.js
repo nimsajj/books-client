@@ -1,3 +1,4 @@
+import { REQUEST_STATUS } from "../../../utils";
 import {
   FETCH_BOOKS_REQUEST,
   FETCH_BOOKS_SUCCESS,
@@ -10,20 +11,23 @@ import {
   FETCH_BOOKS_BY_GENRE_ERROR,
 } from "./action";
 
+const { initial, loading, succeeded, error } = REQUEST_STATUS;
+
 const initialState = {
-  status: "initial",
+  status: initial,
   error: null,
   data: [],
 };
 
 const setFormatDateTimeToPublished = ({ publishedAt }) => {
-  const date = new Date(publishedAt).toLocaleDateString("fr-FR");
-  const time = new Date(publishedAt).toLocaleTimeString("fr-FR");
+  const locale = "fr-FR";
+  const date = new Date(publishedAt).toLocaleDateString(locale);
+  const time = new Date(publishedAt).toLocaleTimeString(locale);
 
   return `${date} ${time}`;
 };
 
-const setBooksStatus = (books, status = "initial") =>
+const setBooksStatus = (books, status = initial) =>
   books.map((book) => {
     return {
       ...book,
@@ -43,32 +47,32 @@ const booksReducer = (state = initialState, action) => {
     case FETCH_BOOKS_BY_GENRE_REQUEST:
       return {
         ...state,
-        status: "loading",
+        status: loading,
       };
     case FETCH_BOOKS_SUCCESS:
     case FETCH_BOOKS_BY_GENRE_SUCCESS:
       return {
         ...state,
         data: setBooksStatus(action.payload),
-        status: "succeeded",
+        status: succeeded,
       };
     case FETCH_BOOKS_ERROR:
     case FETCH_BOOKS_BY_GENRE_ERROR:
-      return { ...state, error: action.payload, status: "error" };
+      return { ...state, error: action.payload, status: error };
     case FETCH_SINGLE_BOOK_REQUEST:
       return {
         ...state,
-        data: setSingleBookStatus(state.data, action.payload, "loading"),
+        data: setSingleBookStatus(state.data, action.payload, loading),
       };
     case FETCH_SINGLE_BOOK_SUCCESS:
       return {
         ...state,
-        data: setSingleBookStatus(state.data, action.payload.id, "succeeded"),
+        data: setSingleBookStatus(state.data, action.payload.id, succeeded),
       };
     case FETCH_SINGLE_BOOK_ERROR:
       return {
         ...state,
-        data: setSingleBookStatus(state.data, action.payload, "error"),
+        data: setSingleBookStatus(state.data, action.payload, error),
       };
     default:
       return state;

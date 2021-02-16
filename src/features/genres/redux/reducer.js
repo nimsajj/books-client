@@ -1,11 +1,14 @@
+import { REQUEST_STATUS } from "../../../utils";
 import {
   FETCH_GENRES_REQUEST,
   FETCH_GENRES_SUCCESS,
   FETCH_GENRES_ERROR,
 } from "./action";
 
+const { initial, loading, succeeded, error } = REQUEST_STATUS;
+
 const initialState = {
-  status: "initial",
+  status: initial,
   error: null,
   data: [],
 };
@@ -15,16 +18,16 @@ const genresReducer = (state = initialState, action) => {
     case FETCH_GENRES_REQUEST:
       return {
         ...state,
-        status: "loading",
+        status: loading,
       };
     case FETCH_GENRES_SUCCESS:
       return {
         ...state,
         data: action.payload,
-        status: "succeeded",
+        status: succeeded,
       };
     case FETCH_GENRES_ERROR:
-      return { ...state, error: action.payload, status: "error" };
+      return { ...state, error: action.payload, status: error };
     default:
       return state;
   }
