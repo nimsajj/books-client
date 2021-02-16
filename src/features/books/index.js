@@ -1,4 +1,2 @@
-import BooksPage from "./BooksPage";
-import SingleBookPage from "./SingleBookPage";
-
-export { BooksPage as HomePage, SingleBookPage };
+export * as components from "./components";
+export * as pages from "./pages";

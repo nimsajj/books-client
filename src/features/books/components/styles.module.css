@@ -1,0 +1,19 @@
+.icon {
+  color: rgba(255, 255, 255, 0.54);
+}
+
+.card_root {
+  max-width: 550;
+}
+
+.card_media {
+  height: 140;
+}
+
+.card_badge {
+  margin: 20px 0px;
+}
+
+.card_divider {
+  margin: 20px 16px;
+}

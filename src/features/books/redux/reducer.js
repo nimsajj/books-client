@@ -25,8 +25,6 @@ const setFormatDateTimeToPublished = ({ publishedAt }) => {
 
 const setBooksStatus = (books, status = "initial") =>
   books.map((book) => {
-    console.log("book status: ", book.status);
-
     return {
       ...book,
       publishedAt: setFormatDateTimeToPublished(book),

@@ -1,0 +1,12 @@
+.warning {
+  display: "inline-flex";
+  vertical-align: "middle";
+  padding: 1em;
+}
+
+.progress {
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  padding: 1em;
+}

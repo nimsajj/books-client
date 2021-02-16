@@ -1,4 +1,6 @@
-import { HomePage, SingleBookPage } from "../features/books";
+import { pages } from "../features/books";
+
+const { BooksPage: HomePage, SingleBookPage } = pages;
 
 const routes = [
   {
